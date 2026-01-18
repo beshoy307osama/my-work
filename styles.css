@@ -1,0 +1,757 @@
+/*color variable*/
+:root {
+    --primary: #00f0ff;
+    --secondary: #ff00e4;
+    --dark: #0a0a0a;
+    --header-bg: rgba(10, 10, 10, 0.25);
+    --header-bg-scrolled: rgba(10, 10, 10, 0.75);
+    --dark-light: #1a1a1a;
+    --light: #f0f0f0;
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* Particles background container - sits behind content */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background: transparent;
+}
+
+/*to rest the page layout*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--light);
+    background-color: var(--dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+    padding-top: 90px;
+
+}
+
+/* Side robot image  style*/
+.side-robot {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 82vh;
+    width: auto;
+    z-index: -1;
+    opacity: 1;
+    filter: drop-shadow(-5px 0 10px rgba(0, 240, 255, 0.2));
+    pointer-events: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header nav-link & logo */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    /* Semi-transparent so content scrolls under header and gets blurred */
+    background-color: var(--header-bg);
+    -webkit-backdrop-filter: blur(10px) saturate(110%);
+    backdrop-filter: blur(8px) saturate(110%);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--light);
+    text-decoration: none;
+    letter-spacing: 1px;
+
+}
+
+.logo span {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-image: var(--gradient);
+}
+
+nav {
+    display: flex;
+    margin-left: auto;
+    margin-right: -100px;
+    width: fit-content;
+    align-items: center;
+
+
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 10px;
+}
+
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease, text-shadow 0.3s;
+    position: relative;
+    padding: 8px 14px;
+}
+
+/* animated underline */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+    transition: width 260ms cubic-bezier(.2, .9, .2, 1), hover 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+    color: var(--primary);
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+/* Ensure main content sits underneath the header visually */
+main {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 50px;
+}
+
+/*description*/
+.subtitle {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    color: #e1e1e1;
+    max-width: auto;
+}
+
+/*description*/
+.what p {
+    color: #e1e1e1;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    padding-top: 180px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 30px 40px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+    border-radius: 12px;
+    border-left: 4px solid #00eaff;
+    width: 80%;
+    transition: all 0.3s ease;
+}
+
+.what p:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.section-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: var(--gradient);
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.section-link:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+/*types of AI design*/
+.head2 {
+    padding-top: 180px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 30px 40px;
+    margin-bottom: 35px;
+    margin-left: 0px;
+    border-left: 4px solid #00eaff;
+    width: 85%;
+    transition: all 0.3s ease;
+
+}
+
+.head2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+/*subheading*/
+.head2 h3 {
+    color: #00eaff;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/*subdescription*/
+.head2 p {
+    color: #e1e1e1;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/* Hero section */
+.hero {
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+}
+
+/*heading*/
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 150px;
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.hero .highlight {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.blink {
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/*fields of AI design*/
+.fields {
+    padding-top: 180px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 30px 40px;
+    margin-bottom: 35px;
+    margin-left: 10%;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    width: 70%;
+    transition: all 0.3s ease;
+
+
+}
+
+/*subheading*/
+.fields h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #00eaff;
+}
+
+/*subdescription*/
+.fields p {
+    color: #e1e1e1;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+}
+
+/*hover effect*/
+.fields:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+/*field image*/
+.field-img {
+    width: 200px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/*field link button*/
+.field-link {
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.fields .section-link:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+/*benefits list design*/
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 40px;
+    max-width: 930px;
+    counter-reset: benefit-counter;
+}
+
+/*benefits items description*/
+.benefits-list li {
+    counter-increment: benefit-counter;
+    position: relative;
+    background: var(--dark-light);
+    border-radius: 8px;
+    padding: 20px 20px 20px 70px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--primary);
+    transition: transform 0.3s ease, border-left-color 0.3s ease;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    transition: all 0.3s ease;
+}
+
+.benefits-list li:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--secondary);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.benefits-list li::before {
+    content: counter(benefit-counter);
+    position: absolute;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+
+.benefits-list li:first-line {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+/* Challenges Grid design*/
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.challenge-card {
+    background: #200020;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--secondary);
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(225, 0, 228, 0.2);
+
+}
+
+/*transition effect on hover*/
+.challenge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(255, 0, 228, 0.2);
+    border-color: rgba(225, 0, 228, 0.2);
+    background: #300030;
+    border: 1px solid var(--secondary);
+}
+
+
+
+.challenge-card h3 {
+    color: var(--light);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.challenge-card p {
+    color: #f0f0f0;
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+/* Future table design */
+.future-wrapper {
+    overflow-x: auto;
+    margin-top: 30px;
+    padding-right: 200px;
+    position: relative;
+    z-index: 1;
+}
+
+.future-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(26, 26, 26, 0.95);
+    font-family: 'Roboto', sans-serif;
+    color: #f0f0f0;
+}
+
+.future-table th {
+    background: #0a0a0a;
+    font-family: 'Orbitron', sans-serif;
+    color: #00f0ff;
+    padding: 22px;
+    text-align: center;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #222;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1a1a1a, #222222);
+    transition: all 0.3s ease;
+}
+
+.future-table td {
+    padding: 20px;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(90deg, #1a1a1a, #222222);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.future-table tbody tr:hover td {
+    background: linear-gradient(135deg, #222222, #2a2a2a);
+    transform: translateY(-2px);
+}
+
+.future-table tbody tr:nth-child(odd) td {
+    background: linear-gradient(90deg, #1a1a1a, #1f1f1f);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .future-wrapper {
+        padding-right: 20px;
+        /* يقلل padding على الشاشات الصغيرة */
+    }
+}
+
+@media (max-width: 768px) {
+
+    .future-table th,
+    .future-table td {
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.25);
+    padding: 50px 0 20px;
+    position: relative;
+    z-index: 10;
+    border-top: 2px solid #00eaff;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    margin-top: 150px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Sections inside the footer styled like the fields boxes */
+.footer-section-slogan {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #00eaff;
+    padding: 12px 18px;
+    width: fit-content;
+    height: fit-content;
+    margin: 20px 0;
+    border-radius: 10px;
+    margin-top: 100px;
+    transition: all 0.3s ease;
+}
+
+.footer-section-slogan:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+.footer-section-slogan p {
+    margin: 0;
+    color: #e1e1e1;
+    font-size: 1.1rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.footer-section-slogan h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #00eaff;
+    margin-bottom: 20px;
+}
+
+.footer-section-contact {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #00eaff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
+}
+
+.footer-section-contact:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+}
+
+/* Form Styling */
+.footer-section-contact input[type="text"],
+.footer-section-contact input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0 15px;
+    border-radius: 8px;
+    background: #0f0f0f;
+    border: 1px solid #00eaff;
+    color: #fff;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.footer-section-contact input[type="text"]:focus,
+.footer-section-contact input[type="email"]:focus {
+    border-color: #ff00e4;
+}
+
+.footer-section-contact input[type="submit"] {
+    padding: 12px 20px;
+    width: 100%;
+    background: linear-gradient(135deg, #00f0ff, #ff00e4);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.footer-section-contact input[type="submit"]:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    color: rgba(240, 240, 240, 0.7);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 900px) {
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .what p {
+        width: 95%;
+        padding: 25px;
+    }
+
+    .head2 {
+        width: 95%;
+        padding: 25px;
+        margin: 0 auto 25px auto;
+    }
+
+    .head2 h3 {
+        font-size: 1.3rem;
+    }
+
+    .head2 p.subtitle {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .challenges-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .challenge-card {
+        padding: 20px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-top: 70px;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    .what p,
+    .head2 {
+        width: 100%;
+        border-radius: 0;
+        margin-left: 0;
+    }
+
+    .footer-section-contact,
+    .footer-section-slogan {
+        min-width: 100%;
+        padding: 0 15px;
+    }
+
+    .side-robot {
+        display: none;
+    }
+
+    .evolution-table {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .evolution-table table {
+        min-width: 600px;
+    }
+}
